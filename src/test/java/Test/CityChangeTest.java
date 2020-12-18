@@ -11,32 +11,28 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.concurrent.TimeUnit;
 
-public class LoginTest {
-    /**
-     * осуществление первоначальной настройки
-     */
-
+public class CityChangeTest {
     public static LoginPage loginPage;
-    public static WebDriver driver;
     public static CityPage cityPage;
+    public static WebDriver driver;
 
     @BeforeClass
     public static void setup() {
-        //определение пути до драйвера и его настройка
         System.setProperty("webdriver.chrome.driver", ConfProperties.getProperty("chromedriver"));
-        //создание экземпляра драйвера
         driver = new ChromeDriver();
-        //окно разворачивается на полный экран
-        driver.manage().window().maximize();
-        //задержка на выполнение теста = 10 сек.
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //получение ссылки на страницу входа из файла настроек
-        driver.get(ConfProperties.getProperty("loginpage"));
         loginPage = new LoginPage(driver);
         cityPage = new CityPage(driver);
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.get(ConfProperties.getProperty("loginpage"));
     }
+
     @Test
-    public void loginTest() {
+    public void changeCityTest() {
+        cityPage.changeCityClick();
+        cityPage.clickCity(ConfProperties.getProperty("city"));
+        String city = cityPage.getCityName();
+        Assert.assertEquals(ConfProperties.getProperty("city"), city);
         loginPage.clickLoginBtn();
         loginPage.inputLogin(ConfProperties.getProperty("login"));
         loginPage.inputPasswd(ConfProperties.getProperty("password"));
@@ -46,12 +42,15 @@ public class LoginTest {
             e.printStackTrace();
         }
         loginPage.clickLoginBtn2();
-        String user = loginPage.getUserName();
-        Assert.assertEquals(ConfProperties.getProperty("name"), user);
+        loginPage.clickUserMenu();
+        loginPage.clickProfile();
+        String cityInAddress = cityPage.getAddress();
+        Assert.assertEquals(city, cityInAddress);
     }
 
     @AfterClass
-    public static void ExitDriver() {
+    public static void ExitDriver()
+    {
         driver.quit();
     }
 }

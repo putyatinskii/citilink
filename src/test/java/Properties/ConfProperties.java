@@ -2,6 +2,8 @@ package Properties;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.Properties;
 
 public class ConfProperties {
@@ -12,7 +14,7 @@ public class ConfProperties {
             //указание пути до файла с настройками
             fileInputStream = new FileInputStream("src/main/resources/conf.properties");
             PROPERTIES = new Properties();
-            PROPERTIES.load(fileInputStream);
+            PROPERTIES.load(new InputStreamReader(fileInputStream, Charset.forName("UTF-8")));
         } catch (IOException e) {
             e.printStackTrace();
             //обработка возможного исключения (нет файла и т.п.)
