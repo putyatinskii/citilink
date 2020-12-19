@@ -1,44 +1,33 @@
 package Test;
 
-import Pages.CityPage;
 import Pages.LoginPage;
+import Pages.ToothbrushPage;
 import Properties.ConfProperties;
-import org.junit.AfterClass;
-import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeUnit;
 
-public class LoginTest {
-    /**
-     * осуществление первоначальной настройки
-     */
-
+public class ToothbrushTest {
     public static LoginPage loginPage;
+    public static ToothbrushPage toothbrushPage;
     public static WebDriver driver;
-    public static CityPage cityPage;
 
     @BeforeClass
     public static void setup() {
-        //определение пути до драйвера и его настройка
         System.setProperty("webdriver.chrome.driver", ConfProperties.getProperty("chromedriver"));
-        //создание экземпляра драйвера
         driver = new ChromeDriver();
-        //окно разворачивается на полный экран
-        driver.manage().window().maximize();
-        //задержка на выполнение теста = 10 сек.
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //получение ссылки на страницу входа из файла настроек
-        driver.get(ConfProperties.getProperty("loginpage"));
         loginPage = new LoginPage(driver);
-        cityPage = new CityPage(driver);
+        toothbrushPage = new ToothbrushPage(driver);
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.get(ConfProperties.getProperty("loginpage"));
     }
+
     @Test
-    public void loginTest() {
+    public void ToothbrushSearchTest() {
         loginPage.clickLoginBtn();
         loginPage.inputLogin(ConfProperties.getProperty("login"));
         loginPage.inputPasswd(ConfProperties.getProperty("password"));
@@ -48,12 +37,12 @@ public class LoginTest {
             e.printStackTrace();
         }
         loginPage.clickLoginBtn2();
-        String user = loginPage.getUserName();
-        Assert.assertEquals(ConfProperties.getProperty("name"), user);
-    }
-
-    @AfterClass
-    public static void ExitDriver() {
-        driver.quit();
+        toothbrushPage.clickCatalogBtn();
+        toothbrushPage.cursorAction();
+        toothbrushPage.clickToothbrushBtn();
+        toothbrushPage.clickToothbrushBtn();
+        toothbrushPage.inputPrice(999, 1999);
+        toothbrushPage.clickAddInCardBtn();
+        toothbrushPage.clickInCardBtn();
     }
 }
