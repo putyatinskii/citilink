@@ -25,7 +25,7 @@ public class ToothbrushPage {
     private WebElement toothbrushCategory;
 
     @FindBy(className = "ProductCardVerticalLayout__wrapper-cart")
-    private WebElement cardAdd;
+    private WebElement cartAdd;
 
     @FindBy(name = "input-min")
     private WebElement min;
@@ -34,7 +34,7 @@ public class ToothbrushPage {
     private WebElement max;
 
     @FindBy(className = "UpsaleBasket__header-link")
-    private WebElement cardIn;
+    private WebElement cartIn;
 
     public void clickCatalogBtn() {
         catalog.click();
@@ -57,11 +57,12 @@ public class ToothbrushPage {
         max.sendKeys(Keys.ENTER);
     }
 
-    public void clickAddInCardBtn() {
-        cardAdd.click();
+    public void clickAddInCartBtn() {
+        cartAdd.click();
     }
 
-    public void clickInCardBtn() {
-        cardIn.click();
+    public void clickInCartBtn() {
+        cartIn.click();
     }
+
 }

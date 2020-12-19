@@ -31,7 +31,8 @@ public class LoginPage {
     private WebElement userMenu;
     @FindBy (partialLinkText = "Мой профиль")
     private WebElement profile;
-
+    @FindBy(partialLinkText = "Выйти")
+    private WebElement signOutBtn;
     /**
      * метод для ввода логина
      */
@@ -66,6 +67,10 @@ public class LoginPage {
 
     public String getUserName() {
         return userMenu.getText();
+    }
+
+    public void SignOutClick() {
+        signOutBtn.click();
     }
 
 }

@@ -3,11 +3,14 @@ package Test;
 import Pages.LoginPage;
 import Pages.ToothbrushPage;
 import Properties.ConfProperties;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class ToothbrushTest {
@@ -42,7 +45,6 @@ public class ToothbrushTest {
         toothbrushPage.clickToothbrushBtn();
         toothbrushPage.clickToothbrushBtn();
         toothbrushPage.inputPrice(999, 1999);
-        toothbrushPage.clickAddInCardBtn();
-        toothbrushPage.clickInCardBtn();
+
     }
 }

@@ -26,8 +26,14 @@ public class CityPage {
     @FindBy(className = "delivery_address")
     private WebElement address;
 
+
+
     public void changeCityClick() {
         cityBtn.click();
+    }
+
+    public String getChangeCity() {
+        return cityBtn.getText();
     }
 
     public String getCityName() {
@@ -35,11 +41,13 @@ public class CityPage {
         return new String(cityName.getBytes(StandardCharsets.UTF_8));
     }
 
-    public String getAddress(){
+    public String getAddress() {
         return address.getText().split(",")[0];
     }
     public void clickCity(String city_name) {
         newCity = driver.findElement(By.partialLinkText(city_name));
         newCity.click();
     }
+
+
 }
