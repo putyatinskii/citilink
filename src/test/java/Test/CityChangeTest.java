@@ -29,7 +29,7 @@ public class CityChangeTest {
     public static Collection<Object[]> GetParams()
     {
         return Arrays.asList(new Object[][]{
-                { "Энгельс" },
+                { "Ейск" },
                 { "Абакан" },
                 { "Азов" },
         });

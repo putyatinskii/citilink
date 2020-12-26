@@ -1,8 +1,10 @@
 package Test;
 
+import Pages.CatalogPage;
 import Pages.LoginPage;
 import Pages.ToothbrushPage;
 import Properties.ConfProperties;
+import com.sun.org.apache.xml.internal.resolver.Catalog;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -17,6 +19,7 @@ public class ToothbrushTest {
     public static LoginPage loginPage;
     public static ToothbrushPage toothbrushPage;
     public static WebDriver driver;
+    public static CatalogPage catalogPage;
 
     @BeforeClass
     public static void setup() {
@@ -45,6 +48,13 @@ public class ToothbrushTest {
         toothbrushPage.clickToothbrushBtn();
         toothbrushPage.clickToothbrushBtn();
         toothbrushPage.inputPrice(999, 1999);
+        toothbrushPage.clickToListBtn();
+//        List<WebElement> products = catalogPage.getProductList();
+//        Assert.assertFalse(products.isEmpty());
+//        catalogPage.addToCart(products.get(products.size() - 2));
+//        catalogPage.clickOnCart();
+//        catalogPage.clickOnCheckout();
+//        catalogPage.selectDelivery();
 
     }
 }

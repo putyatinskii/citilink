@@ -36,6 +36,9 @@ public class ToothbrushPage {
     @FindBy(className = "UpsaleBasket__header-link")
     private WebElement cartIn;
 
+    @FindBy(className = "ProductCardCategoryList__icon_list")
+    private WebElement toList;
+
     public void clickCatalogBtn() {
         catalog.click();
     }
@@ -57,6 +60,7 @@ public class ToothbrushPage {
         max.sendKeys(Keys.ENTER);
     }
 
+
     public void clickAddInCartBtn() {
         cartAdd.click();
     }
@@ -65,4 +69,7 @@ public class ToothbrushPage {
         cartIn.click();
     }
 
+    public void clickToListBtn() {
+        toList.click();
+    }
 }
